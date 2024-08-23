@@ -1,5 +1,6 @@
 # WSL_PySpark_Airflow_Setup-Installation
 
+
 # Updating the instructions in the .txt file with the new 'airflow db migrate' command
 final_instructions = """
 1. Habilitar o WSL no Windows
@@ -53,31 +54,32 @@ final_instructions = """
 
 5.1. Criar e ativar um ambiente virtual:
   python3 -m venv airflow_venv
-  source airflow_venv/bin/activate
 
 5.2. Instalar o Airflow com suporte para PySpark:
   export AIRFLOW_HOME=~/airflow
   export PATH="$HOME/.local/bin:$PATH"
-  source ~/.bashrc # ou ~/.zshrc
   AIRFLOW_VERSION=2.10.0
   PYTHON_VERSION="$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
   CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+  source ~/.bashrc
+
+  source airflow_venv/bin/activate
   pip3 install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
 5.3. Migrar o banco de dados do Airflow:
-  airflow db migrate
+  airflow db init
 
 5.4. Criar um usuário administrador:
   airflow users create \
-      --username admin \
-      --firstname Admin \
-      --lastname User \
+      --username gustavo \
+      --firstname Gustavo \
+      --lastname Paula \
       --role Admin \
       --email admin@example.com
 
 5.5. Iniciar o scheduler e a web interface:
-  airflow scheduler
   airflow webserver --port 8080
+  airflow scheduler
 
 6. Criar um Projeto com PySpark e Airflow
 
@@ -129,3 +131,14 @@ final_instructions = """
 with open('/mnt/data/WSL_PySpark_Airflow_Setup.txt', 'w') as file:
     file.write(final_instructions)
 
+
+
+comandos de apoio:
+deligar ambiente virtual python:
+  deactivate
+
+deletar um diretorio:
+  rm -rf airflow_venv
+
+abrir o VScode:
+  code .
