@@ -1,5 +1,7 @@
 # WSL_PySpark_Airflow_Setup-Installation
 
+# Updating the instructions in the .txt file with the new 'airflow db migrate' command
+final_instructions = """
 1. Habilitar o WSL no Windows
 
 1.1. Abrir o PowerShell como Administrador:
@@ -55,13 +57,23 @@
 
 5.2. Instalar o Airflow com suporte para PySpark:
   export AIRFLOW_HOME=~/airflow
-  pip install apache-airflow[mysql,celery,redis] apache-airflow-providers-apache-spark
+  export PATH="$HOME/.local/bin:$PATH"
+  source ~/.bashrc # ou ~/.zshrc
+  AIRFLOW_VERSION=2.10.0
+  PYTHON_VERSION="$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
+  CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+  pip3 install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
-5.3. Inicializar o banco de dados do Airflow:
-  airflow db init
+5.3. Migrar o banco de dados do Airflow:
+  airflow db migrate
 
 5.4. Criar um usuário administrador:
-  airflow users create       --username admin       --firstname Admin       --lastname User       --role Admin       --email admin@example.com
+  airflow users create \
+      --username admin \
+      --firstname Admin \
+      --lastname User \
+      --role Admin \
+      --email admin@example.com
 
 5.5. Iniciar o scheduler e a web interface:
   airflow scheduler
@@ -111,3 +123,9 @@
 6.6. Rodar o projeto:
   Adicione o caminho do projeto ao AIRFLOW_HOME e inicie o Airflow.
   O DAG aparecerá na interface web do Airflow para execução.
+"""
+
+# Saving the final instructions to a text file
+with open('/mnt/data/WSL_PySpark_Airflow_Setup.txt', 'w') as file:
+    file.write(final_instructions)
+
