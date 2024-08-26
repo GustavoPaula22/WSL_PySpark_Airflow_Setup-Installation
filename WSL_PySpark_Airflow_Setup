@@ -136,3 +136,13 @@ mkdir -p ~/airflow/dags
 - Iniciar serviços Airflow:
   airflow webserver --port 8080 
   airflow scheduler
+
+No PowerShell
+  instalar o ubuntu
+- wsl --install -d Ubuntu
+
+  dessistalar o ubuntu
+- wsl --unregister Ubuntu
+
+  ver distribuições instaladas
+- wsl --list --all
