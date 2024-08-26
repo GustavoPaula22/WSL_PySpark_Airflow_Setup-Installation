@@ -142,3 +142,22 @@ deletar um diretorio:
 
 abrir o VScode:
   code .
+
+criar projeto:
+  mkdir -p /home/gustavo/Python_ContratoLicitacoesETL
+  cd ~/Python_PortalTransparenciaETL
+  python3 -m venv .venv
+
+  touch /home/gustavo/Python_ContratoLicitacoesETL/etl.py
+
+  source .venv/bin/activate
+
+adicionar o projeto a dags do airflow exemplo adicionando 2 projeto aqui:
+  export AIRFLOW__CORE__DAGS_FOLDER="~/Python_ContratoLicitacoesETL:~/Python_PortalTransparenciaETL"
+
+liberar dags dos projetos:
+  export AIRFLOW__CORE__DAGS_FOLDER="/home/gustavo"
+
+  mkdir -p /home/gustavo/airflow/dags
+  ln -s /home/gustavo/Python_ContratoLicitacoesETL /home/gustavo/airflow/dags/Python_ContratoLicitacoesETL
+  ln -s /home/gustavo/Python_PortalTransparenciaETL /home/gustavo/airflow/dags/Python_PortalTransparenciaETL
