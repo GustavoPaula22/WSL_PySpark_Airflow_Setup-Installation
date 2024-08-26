@@ -2,6 +2,8 @@
 
 1.1. Abrir o PowerShell como Administrador:
 - Clique com o botão direito no menu Iniciar e selecione "Windows PowerShell (Admin)".
+habilite o wsl
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 1.2. Habilitar o WSL:
 - No PowerShell, execute:
