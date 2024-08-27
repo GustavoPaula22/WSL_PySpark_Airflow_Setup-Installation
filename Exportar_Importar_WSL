@@ -1,0 +1,16 @@
+wsl -l -v
+wsl --export Ubuntu c:\ubuntu.tar
+
+------------------------------
+
+importar maquina WSL
+wsl --import MeuUbuntu C:\WSL\MeuUbuntu C:\Meus\ubuntu.tar
+
+MeuUbuntu: Nome para a nova distribuição.
+C:\WSL\MeuUbuntu: Diretório onde a nova distribuição será armazenada.
+C:\Meus\ubuntu.tar: Caminho para o arquivo .tar exportado
+
+------------------------------
+
+para iniciar a distribuição importada
+wsl -d MeuUbuntu
